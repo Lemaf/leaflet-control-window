@@ -188,11 +188,18 @@ L.Control.Window = L.Control.extend({
         return this._containerContent;
     },
     content: function (content) {
+
         if (content==undefined){
             return this.options.content
         }
+
         this.options.content = content;
-        this.getContainer().innerHTML = content;
+
+        if(content instanceof Element)
+            this.getContainer().appendChild(content);
+        else
+            this.getContainer().innerHTML = content;
+
         return this;
     },
     prompt : function(promptObject){
